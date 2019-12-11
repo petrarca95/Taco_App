@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Data
+//* in book they added a @RequiredArgsConstructor annotation. Not needed because it is included in @Data
 public class Ingredient {
 
 
@@ -26,7 +27,7 @@ public class Ingredient {
 
 
     public static enum Type{
-        WRAP,PROTEIN,VEGGIES, CHESSE,SAUCE
+        WRAP,PROTEIN,VEGGIES, CHEESE,SAUCE
     }
 
 }

@@ -9,6 +9,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String homepage(){
+        System.out.println("hi from homeeee");
         return "home";
     }
 }
