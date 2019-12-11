@@ -3,11 +3,9 @@ package sia.tacocloud;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,8 +68,9 @@ public class DesignTacoController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processDesign(Taco tacoDesignoca){
-        System.out.println("hi");
+    //* @ModelAttribute will bind parameters submitted via the form to instance variables in the Taco object (Used here as a Command object)
+    //* Where do we get the Taco object? If there is currently one in the Spring Container, from there, if not one is instantiated
+    public String processDesign(@ModelAttribute Taco tacoDesignoca){
 
 
         return "orderForm";
