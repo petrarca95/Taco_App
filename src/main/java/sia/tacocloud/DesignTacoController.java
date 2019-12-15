@@ -68,9 +68,17 @@ public class DesignTacoController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    //* @ModelAttribute will bind parameters submitted via the form to instance variables in the Taco object (Used here as a Command object)
-    //* Where do we get the Taco object? If there is currently one in the Spring Container, from there, if not one is instantiated
-    public String processDesign(@ModelAttribute Taco tacoDesignoca){
+    /**
+     ** @ModelAttribute will bind parameters submitted via the form to instance variables in the Taco object (Used here as a Command object)
+     ** Where do we get the Taco object? If there is currently one in the Spring Container, from there, if not one is instantiated, Form does not actually send it
+     *! @RequestParam List<String> ingredients, @RequestParam String name in handler method can be used to bind data sent in URL of GET or in this case, body of POST request, to a Java object
+     ** @RequestParam is used to illustrate it's used but we do not need it since we already POSTed data to Taco Model Object
+      */
+
+    //*!
+    public String processDesign(@ModelAttribute Taco tacoDesign, @RequestParam List<String> ingredients, @RequestParam String name){
+        //TODO Save the Taco Design
+        log.info("Processing design: "+tacoDesign);
 
 
         return "orderForm";
