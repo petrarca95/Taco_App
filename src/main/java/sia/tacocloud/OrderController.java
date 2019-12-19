@@ -18,7 +18,7 @@ public class OrderController {
     @GetMapping(value = "/current")
     public String orderForm(Model model){
 
-
+        //*command object backing order form
         model.addAttribute("order", new Order());
         return "orderForm";
     }

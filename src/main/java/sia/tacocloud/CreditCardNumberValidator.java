@@ -21,11 +21,15 @@ public class CreditCardNumberValidator implements ConstraintValidator<CreditCard
 
     @Override
     public boolean isValid(Order order, ConstraintValidatorContext constraintValidatorContext) {
-        if(MC_CARD_PATTERN.matcher(order.getCcNumber()).matches()||
-                VC_CARD_PATTERN.matcher(order.getCcNumber()).matches()||
-                AE_CARD_PATTERN.matcher(order.getCcNumber()).matches()){
+        //TODO, test case with visa for Credit Card Company and 4111111111111111  for credit card number returning false
+        if((MC_CARD_PATTERN.matcher(order.getCcNumber()).matches() && order.getCcCompany().equalsIgnoreCase("mastercard") )  ||
+                (VC_CARD_PATTERN.matcher(order.getCcNumber()).matches()  && order.getCcCompany().equalsIgnoreCase("visa") )  ||
+                (AE_CARD_PATTERN.matcher(order.getCcNumber()).matches()) && order.getCcCompany().equalsIgnoreCase("american express"))
+
+        {
             return true;
         }
+
         else{
             return false;
         }
