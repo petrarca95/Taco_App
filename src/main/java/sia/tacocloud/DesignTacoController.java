@@ -3,9 +3,11 @@ package sia.tacocloud;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -75,9 +77,17 @@ public class DesignTacoController {
      ** @RequestParam is used to illustrate it's use but we do not need it since we already POSTed data to Taco Model Object
       */
 
-    public String processDesign(@ModelAttribute Taco tacoDesign, @RequestParam List<String> ingredients, @RequestParam String name){
+    public String processDesign(@ModelAttribute @Valid Taco tacoDesign, BindingResult bindingResult, @RequestParam List<String> ingredients, @RequestParam String name){
         //TODO Save the Taco Design
+
+        //TODO move logic away from controller and into service class
+        if (bindingResult.hasErrors()){
+            log.info("Error Processing Taco Design: "+bindingResult.getAllErrors());
+            return"redirect:/design";
+        }
+
         log.info("Processing design: "+tacoDesign);
+
 
 
         return "redirect:/orders/current";

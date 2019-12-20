@@ -13,23 +13,22 @@ import javax.validation.constraints.Size;
 @CreditCardConstraint
 @Data
 public class Order {
-    @NotEmpty
+    @NotEmpty(message = "field cannot me empty" )
     private String name;
-    @NotEmpty
+    @NotEmpty(message = "field cannot me empty" )
     private String street;
     private String city;
-    @NotEmpty
+    @NotEmpty(message = "field cannot me empty" )
     private String state;
     private String zip;
-    @NotEmpty
-//    @CreditCardNumber(message = "not a valid credit card number", ignoreNonDigitCharacters = true)
+    @NotEmpty(message = "field cannot me empty" )
+    @CreditCardNumber(message = "not a valid credit card number", ignoreNonDigitCharacters = true)
     private String ccNumber;
-    @NotEmpty
+    @NotEmpty(message = "field cannot me empty" )
     private String ccExpiration;
-    @NotEmpty
+    @NotEmpty(message = "field cannot me empty" )
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
-
-    @NotEmpty
+    @NotEmpty(message = "field cannot me empty" )
     private String ccCompany;
 }

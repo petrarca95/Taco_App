@@ -25,6 +25,8 @@ public class OrderController {
 
     @PostMapping()
     public String processOrder(@ModelAttribute @Valid Order order, BindingResult bindingResult){
+
+        //TODO move logic away from controller and into service class
         if(bindingResult.hasErrors()){
             return "orderForm";
         }
