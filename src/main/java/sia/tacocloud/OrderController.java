@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,8 +26,9 @@ public class OrderController {
     }
 
     @PostMapping()
-    public String processOrder(@ModelAttribute @Valid Order order, BindingResult bindingResult){
+    public String processOrder(@ModelAttribute @Valid Order order, BindingResult bindingResult, Errors error){
 
+       //List<ObjectError> objectErrors=  bindingResult.getGlobalErrors();
         //TODO move logic away from controller and into service class
         if(bindingResult.hasErrors()){
             return "orderForm";

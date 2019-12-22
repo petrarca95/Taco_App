@@ -1,6 +1,7 @@
 package sia.tacocloud;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,28 +26,44 @@ import java.util.stream.Collectors;
 @RequestMapping("/design")
 public class DesignTacoController {
 
-    private ArrayList<Ingredient> ingredients = new ArrayList<>();
+//    private ArrayList<Ingredient> ingredients = new ArrayList<>();
+
+//    @Autowired
+//    private  IngredientRepository ingredientRepositoryImpl;
+
+//    @Autowired
+//    public DesignTacoController(IngredientRepository ingredientRepositoryImpl){
+//        this.ingredientRepositoryImpl = ingredientRepositoryImpl;
+//    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String showDesignForm(Model model) {
 
-        List<Ingredient> ingredients = Arrays.asList(
-//                (new Ingredient("BEFF", "beef", Ingredient.Type.PROTEIN)),
-//                (new Ingredient("CHICKEN", "chicken", Ingredient.Type.PROTEIN)),
-//                (new Ingredient("CHED", "cheddar", Ingredient.Type.CHESSE)),
-//                (new Ingredient("MOZ", "mozzarella", Ingredient.Type.CHESSE)),
-//                (new Ingredient("LET", "letuce", Ingredient.Type.VEGGIES))
-                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
-                new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
-                new Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
-                new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
-                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
-                new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
-                new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
-        );
+
+//        List<Ingredient> ingredients = Arrays.asList(
+////                (new Ingredient("BEFF", "beef", Ingredient.Type.PROTEIN)),
+////                (new Ingredient("CHICKEN", "chicken", Ingredient.Type.PROTEIN)),
+////                (new Ingredient("CHED", "cheddar", Ingredient.Type.CHESSE)),
+////                (new Ingredient("MOZ", "mozzarella", Ingredient.Type.CHESSE)),
+////                (new Ingredient("LET", "letuce", Ingredient.Type.VEGGIES))
+//                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
+//                new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
+//                new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
+//                new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
+//                new Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
+//                new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
+//                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
+//                new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
+//                new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
+//                new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
+//        );
+
+
+//        List<Ingredient> ingredients= (List<Ingredient>) ingredientRepositoryImpl.findAll();
+        List<Ingredient> ingredients = new ArrayList<>();
+
+        //*.findAll() fetches all ingredients from the DB
+//        ingredientRepositoryImpl.findAll().forEach(ingredient -> ingredients.add(ingredient));
 
         //* Get all types in a list
         Ingredient.Type[] types = Ingredient.Type.values();
@@ -78,7 +95,6 @@ public class DesignTacoController {
       */
 
     public String processDesign(@ModelAttribute @Valid Taco tacoDesign, BindingResult bindingResult, @RequestParam List<String> ingredients, @RequestParam String name){
-        //TODO Save the Taco Design
 
         //TODO move logic away from controller and into service class
         if (bindingResult.hasErrors()){
@@ -86,9 +102,9 @@ public class DesignTacoController {
             return"redirect:/design";
         }
 
+
+        //TODO Save the Taco Design
         log.info("Processing design: "+tacoDesign);
-
-
 
         return "redirect:/orders/current";
     }
