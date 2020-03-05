@@ -9,6 +9,6 @@ public interface IngredientRepository {
 
     public List<Ingredient> findAll();
 
-    public Ingredient save();
+    public Ingredient save(Ingredient ingredient);
 
 }

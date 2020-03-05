@@ -28,8 +28,9 @@ public class DesignTacoController {
 
 //    private ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-//    @Autowired
-//    private  IngredientRepository ingredientRepositoryImpl;
+
+    @Autowired
+    private  IngredientRepository ingredientRepositoryImpl;
 
 //    @Autowired
 //    public DesignTacoController(IngredientRepository ingredientRepositoryImpl){
@@ -60,7 +61,7 @@ public class DesignTacoController {
 
 
 //        List<Ingredient> ingredients= (List<Ingredient>) ingredientRepositoryImpl.findAll();
-        List<Ingredient> ingredients = new ArrayList<>();
+        List<Ingredient> ingredients = ingredientRepositoryImpl.findAll();
 
         //*.findAll() fetches all ingredients from the DB
 //        ingredientRepositoryImpl.findAll().forEach(ingredient -> ingredients.add(ingredient));
